@@ -1,0 +1,2 @@
+/usr/bin/ar qc libkd.a CMakeFiles/kd.dir/src/kdtree.cpp.o CMakeFiles/kd.dir/src/icp_3d.cpp.o
+/usr/bin/ranlib libkd.a

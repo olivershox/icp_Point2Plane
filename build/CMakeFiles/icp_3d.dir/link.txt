@@ -1,0 +1,2 @@
+/usr/bin/ar qc libicp_3d.a CMakeFiles/icp_3d.dir/src/icp_3d.cpp.o
+/usr/bin/ranlib libicp_3d.a

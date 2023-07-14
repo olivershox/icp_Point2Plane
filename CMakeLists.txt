@@ -8,7 +8,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g ${CMAKE_CXX_FLAGS}")
 find_package(PCL REQUIRED)
 
 
-include_directories("/usr/include/eigen3")
+
 include_directories(${PROJECT_SOURCE_DIR}/sophus)
 #find_package(Sophus REQUIRED)
 include_directories(${Sophus_DIRECTORIES})
@@ -16,11 +16,17 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PCL_INCLUDE_DIRS})
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
-add_library(kdtree src/kdtree.cpp)
-add_library(icp_3d src/icp_3d.cpp)
+add_library(kd src/kdtree.cpp
+src/icp_3d.cpp)
+target_link_libraries(kd
+        ${PCL_LIBRARIES}
+        ${GLOG_LIBRARIES}
+
+        gflags
+        )
 
 add_executable(icp src/test_icp.cpp)
-target_link_libraries(icp glog gflags kdtree icp_3d)
+target_link_libraries(icp glog gflags kd tbb)
 target_link_libraries(icp ${PCL_LIBRARIES})
 
 #add_executable(icp_align src/icp_align.cpp)
